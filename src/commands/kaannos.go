@@ -15,8 +15,6 @@ var kaannosInfo = discordgo.ApplicationCommand{
 func kaannosCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	channel := i.ChannelID
 
-	log.Println("asd")
-
 	file, err := os.Open("assets/käännös.mp4")
 	if err != nil {
 		log.Printf("Error reading käännös.mp4 : %v", err)
