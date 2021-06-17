@@ -8,4 +8,4 @@ clean:
 	go clean
 
 docker:
-	docker build -t mxr/christmas-bot:latest .
+	docker build -t mxr/vanamehe-bot:latest .
