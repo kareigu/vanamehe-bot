@@ -7,21 +7,21 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-var huuttisInfo = discordgo.ApplicationCommand{
-	Name:        "huuttis",
-	Description: "Huuttis mint",
+var jattisInfo = discordgo.ApplicationCommand{
+	Name:        "jättis",
+	Description: "Jättis huuttis mint",
 }
 
-func huuttisCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
+func jattisCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	channel := i.ChannelID
 
-	file, err := os.Open("assets/huuttis.mp4")
+	file, err := os.Open("assets/jättis.mp4")
 	if err != nil {
 		return
 	}
 
 	v := discordgo.File{
-		Name:        "huuttis.mp4",
+		Name:        "jättis.mp4",
 		ContentType: "video/mp4",
 		Reader:      file,
 	}
@@ -29,12 +29,12 @@ func huuttisCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionApplicationCommandResponseData{
-			Content: "huuttis mint",
+			Content: "jättis huuttis mint",
 		},
 	})
 
 	if err != nil {
-		log.Printf("Huuttis issue: %v", err)
+		log.Printf("Jättis issue: %v", err)
 	}
 
 	s.ChannelMessageSendComplex(channel, &discordgo.MessageSend{
