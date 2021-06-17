@@ -8,6 +8,7 @@ var (
 	List = []*discordgo.ApplicationCommand{
 		&huuttisInfo,
 		&jattisInfo,
+		&kaannosInfo,
 	}
 
 	Handlers = map[string]func(
@@ -15,5 +16,6 @@ var (
 		i *discordgo.InteractionCreate){
 		"huuttis": huuttisCmd,
 		"jättis":  jattisCmd,
+		"käännös": kaannosCmd,
 	}
 )
