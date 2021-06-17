@@ -1,0 +1,5 @@
+services:
+  bot:
+    image: mxr/vanamehe-bot
+    container_name: VanameheBot
+    restart: unless-stopped
