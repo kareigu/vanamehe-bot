@@ -9,13 +9,15 @@ var (
 		&huuttisInfo,
 		&jattisInfo,
 		&kaannosInfo,
+		&kiinnostaaInfo,
 	}
 
 	Handlers = map[string]func(
 		s *discordgo.Session,
 		i *discordgo.InteractionCreate){
-		huuttisInfo.Name: huuttisCmd,
-		jattisInfo.Name:  jattisCmd,
-		kaannosInfo.Name: kaannosCmd,
+		huuttisInfo.Name:    huuttisCmd,
+		jattisInfo.Name:     jattisCmd,
+		kaannosInfo.Name:    kaannosCmd,
+		kiinnostaaInfo.Name: kiinnostaaCmd,
 	}
 )
