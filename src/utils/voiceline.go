@@ -1,13 +1,20 @@
 package utils
 
 import (
+	"fmt"
 	"log"
+	"math/rand"
 
 	"github.com/bwmarrin/dgvoice"
 	"github.com/bwmarrin/discordgo"
 )
 
 const PRIIDIK_ID = "856586054048022549"
+
+var VOICE_LINES = [10]string{"se01",
+	"se02", "se03", "se04",
+	"se05", "se06", "se07",
+	"se08", "se09", "se10"}
 
 func PlayVoiceLine(s *discordgo.Session) {
 	for _, conn := range s.VoiceConnections {
@@ -19,7 +26,10 @@ func PlayVoiceLine(s *discordgo.Session) {
 
 		for _, vs := range guild.VoiceStates {
 			if vs.UserID == PRIIDIK_ID {
-				dgvoice.PlayAudioFile(conn, "./assets/se01.mp3", make(chan bool))
+				roll := rand.Intn(9)
+				log.Printf("Voiceline roll: %v", roll)
+				filename := fmt.Sprintf("./assets/%v.mp3", VOICE_LINES[roll])
+				dgvoice.PlayAudioFile(conn, filename, make(chan bool))
 				log.Print("Ran se on")
 			}
 		}
