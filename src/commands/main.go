@@ -14,8 +14,8 @@ var (
 	Handlers = map[string]func(
 		s *discordgo.Session,
 		i *discordgo.InteractionCreate){
-		"huuttis": huuttisCmd,
-		"jättis":  jattisCmd,
-		"käännös": kaannosCmd,
+		huuttisInfo.Name: huuttisCmd,
+		jattisInfo.Name:  jattisCmd,
+		kaannosInfo.Name: kaannosCmd,
 	}
 )
