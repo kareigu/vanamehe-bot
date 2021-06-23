@@ -54,7 +54,7 @@ func init() {
 			return
 		}
 
-		if m.Author.ID == PRIIDIK_ID && m.GuildID == "" {
+		if m.Author.ID == PRIIDIK_ID && m.Content == "(mis see on)" {
 			for _, conn := range s.VoiceConnections {
 				guild, err := s.State.Guild(conn.GuildID)
 				if err != nil {
