@@ -12,12 +12,7 @@ var kaannosInfo = discordgo.ApplicationCommand{
 }
 
 func kaannosCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
-	err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: &discordgo.InteractionApplicationCommandResponseData{
-			Content: "https://mxrr.dev/files/vanamehe/käännös.mp4",
-		},
-	})
+	err := InteractionRespondMessage(s, i, "https://mxrr.dev/files/vanamehe/käännös.mp4")
 
 	if err != nil {
 		log.Printf("Käännös issue: %v", err)
