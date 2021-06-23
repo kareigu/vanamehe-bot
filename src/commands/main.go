@@ -11,6 +11,7 @@ var (
 		&kaannosInfo,
 		&kiinnostaaInfo,
 		&joinInfo,
+		&leaveInfo,
 	}
 
 	Handlers = map[string]func(
@@ -21,6 +22,7 @@ var (
 		kaannosInfo.Name:    kaannosCmd,
 		kiinnostaaInfo.Name: kiinnostaaCmd,
 		joinInfo.Name:       joinCmd,
+		leaveInfo.Name:      leaveCmd,
 	}
 )
 
