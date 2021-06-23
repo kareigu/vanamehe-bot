@@ -1,14 +1,21 @@
-name: Go
+name: Docker
 
 on:
-  push:
-    branches: [ dev ]
   pull_request:
     branches: [ prod ]
 
 jobs:
 
-  build:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Docker
+      run: make docker
+
+
+  make:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -20,4 +27,3 @@ jobs:
 
     - name: Build
       run: make build
-
