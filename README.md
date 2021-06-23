@@ -1,5 +1,7 @@
 # Vanamehe
-
+![Go-Build](https://github.com/mxrr/vanamehe-bot/actions/workflows/go.yml/badge.svg)
+![Docker-Build](https://github.com/mxrr/vanamehe-bot/actions/workflows/docker.yml/badge.svg)
+![Deploy](https://github.com/mxrr/vanamehe-bot/actions/workflows/deploy.yml/badge.svg)
 ## Jättis huuttis mint
 
 ![huuttis](assets/vanamehe.jpg)
