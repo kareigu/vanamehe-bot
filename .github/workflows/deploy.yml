@@ -11,18 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
+    - name: Deploy through SSH
+      uses: appleboy/ssh-action@master
       with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        known_hosts: 'temp'
-    - name: Add Known Hosts
-      run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-    - name: SSH onto server
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
-    - name: Change into project directory
-      run: cd ${{ secrets.PROJECT_FOLDER }}
-    - name: Test
-      run: ls
+        port: ${{ secrets.PORT }}
+        script: cd ${{ secrets.PROJECT_FOLDER }} | ls
 
