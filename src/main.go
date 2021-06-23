@@ -6,8 +6,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"utils"
 
-	"github.com/bwmarrin/dgvoice"
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
 )
@@ -16,8 +16,6 @@ var (
 	client  *discordgo.Session
 	GuildID string
 )
-
-const PRIIDIK_ID = "856586054048022549"
 
 func init() {
 	err := godotenv.Load()
@@ -54,25 +52,10 @@ func init() {
 			return
 		}
 
-		if m.Author.ID == PRIIDIK_ID && m.Content == "(mis see on)" {
-			for _, conn := range s.VoiceConnections {
-				guild, err := s.State.Guild(conn.GuildID)
-				if err != nil {
-					log.Print("Error getting guild")
-					return
-				}
-
-				for _, vs := range guild.VoiceStates {
-					if vs.UserID == PRIIDIK_ID {
-						dgvoice.PlayAudioFile(conn, "./assets/se01.mp3", make(chan bool))
-						log.Print("Ran se on")
-					}
-				}
-			}
+		if m.Author.ID == utils.PRIIDIK_ID && m.Content == "(mis see on)" {
+			utils.PlayVoiceLine(s)
 		}
 	})
-
-	//m := discordgo.DM
 }
 
 func main() {
