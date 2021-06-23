@@ -21,6 +21,8 @@ jobs:
 
     - name: SSH onto server
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+    - name: Change into project directory
       run: cd ${{ secrets.PROJECT_FOLDER }}
+    - name: Test
       run: ls
 
