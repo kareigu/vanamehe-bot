@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/bwmarrin/dgvoice"
 	"github.com/bwmarrin/discordgo"
 	"github.com/joho/godotenv"
 )
@@ -15,6 +16,8 @@ var (
 	client  *discordgo.Session
 	GuildID string
 )
+
+const PRIIDIK_ID = "856586054048022549"
 
 func init() {
 	err := godotenv.Load()
@@ -45,10 +48,35 @@ func init() {
 				i.Data.Name)
 		}
 	})
+
+	client.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
+		if m.Author.ID == s.State.User.ID {
+			return
+		}
+
+		if m.Author.ID == PRIIDIK_ID && m.GuildID == "" {
+			for _, conn := range s.VoiceConnections {
+				guild, err := s.State.Guild(conn.GuildID)
+				if err != nil {
+					log.Print("Error getting guild")
+					return
+				}
+
+				for _, vs := range guild.VoiceStates {
+					if vs.UserID == PRIIDIK_ID {
+						dgvoice.PlayAudioFile(conn, "./assets/se01.mp3", make(chan bool))
+						log.Print("Ran se on")
+					}
+				}
+			}
+		}
+	})
+
+	//m := discordgo.DM
 }
 
 func main() {
-	client.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsGuilds | discordgo.IntentsGuildVoiceStates
+	client.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsGuilds | discordgo.IntentsGuildVoiceStates | discordgo.IntentsDirectMessages
 	client.AddHandler(func(s *discordgo.Session, r *discordgo.Ready) {
 		log.Println("Running...")
 	})
