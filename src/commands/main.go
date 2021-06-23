@@ -10,6 +10,7 @@ var (
 		&jattisInfo,
 		&kaannosInfo,
 		&kiinnostaaInfo,
+		&joinInfo,
 	}
 
 	Handlers = map[string]func(
@@ -19,5 +20,15 @@ var (
 		jattisInfo.Name:     jattisCmd,
 		kaannosInfo.Name:    kaannosCmd,
 		kiinnostaaInfo.Name: kiinnostaaCmd,
+		joinInfo.Name:       joinCmd,
 	}
 )
+
+func InteractionRespondMessage(s *discordgo.Session, i *discordgo.InteractionCreate, msg string) error {
+	return s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionApplicationCommandResponseData{
+			Content: msg,
+		},
+	})
+}

@@ -48,7 +48,7 @@ func init() {
 }
 
 func main() {
-	client.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsGuilds
+	client.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsGuilds | discordgo.IntentsGuildVoiceStates
 	client.AddHandler(func(s *discordgo.Session, r *discordgo.Ready) {
 		log.Println("Running...")
 	})
