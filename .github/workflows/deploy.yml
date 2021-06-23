@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ prod ]
 
 jobs:
 
@@ -18,5 +18,12 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
-        script: cd ${{ secrets.PROJECT_FOLDER }} | ls
+        script: |
+          cd ${{ secrets.PROJECT_FOLDER }} 
+          git fetch
+          git checkout prod
+          git pull -u origin prod
+          make docker
+          docker-compose down
+          docker-compose up -d
 
