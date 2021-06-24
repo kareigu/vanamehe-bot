@@ -3,6 +3,7 @@ package utils
 import (
 	"fmt"
 	"log"
+	"time"
 	"math/rand"
 
 	"github.com/bwmarrin/dgvoice"
@@ -26,6 +27,7 @@ func PlayVoiceLine(s *discordgo.Session) {
 
 		for _, vs := range guild.VoiceStates {
 			if vs.UserID == PRIIDIK_ID {
+				rand.Seed(time.Now().UnixNano())
 				roll := rand.Intn(9)
 				log.Printf("Voiceline roll: %v", roll)
 				filename := fmt.Sprintf("./assets/%v.mp3", VOICE_LINES[roll])
