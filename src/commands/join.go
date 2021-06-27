@@ -13,6 +13,11 @@ var joinInfo = discordgo.ApplicationCommand{
 }
 
 func joinCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	if i.GuildID == "" {
+		InteractionRespondMessage(s, i, "mitte otsesõnumis")
+		return
+	}
+
 	if s.VoiceConnections[i.GuildID] != nil {
 		InteractionRespondMessage(s, i, "Juba kanalis")
 		return
