@@ -10,6 +10,11 @@ var leaveInfo = discordgo.ApplicationCommand{
 }
 
 func leaveCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	if i.GuildID == "" {
+		InteractionRespondMessage(s, i, "mitte otsesõnumis")
+		return
+	}
+
 	if s.VoiceConnections[i.GuildID] != nil {
 		s.VoiceConnections[i.GuildID].Disconnect()
 		InteractionRespondMessage(s, i, "Vasak kanal")
