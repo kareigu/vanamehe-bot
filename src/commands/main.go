@@ -13,6 +13,7 @@ var (
 		&joinInfo,
 		&leaveInfo,
 		&homoInfo,
+		&randomInfo,
 	}
 
 	Handlers = map[string]func(
@@ -25,6 +26,7 @@ var (
 		joinInfo.Name:       joinCmd,
 		leaveInfo.Name:      leaveCmd,
 		homoInfo.Name:       homoCmd,
+		randomInfo.Name:     randomCmd,
 	}
 )
 

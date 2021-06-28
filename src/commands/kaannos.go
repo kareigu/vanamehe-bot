@@ -2,6 +2,7 @@ package commands
 
 import (
 	"log"
+	"utils"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -12,7 +13,7 @@ var kaannosInfo = discordgo.ApplicationCommand{
 }
 
 func kaannosCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
-	err := InteractionRespondMessage(s, i, "https://mxrr.dev/files/vanamehe/käännös.mp4")
+	err := InteractionRespondMessage(s, i, utils.Videos[utils.KÄÄNNÖS])
 
 	if err != nil {
 		log.Printf("Käännös issue: %v", err)
