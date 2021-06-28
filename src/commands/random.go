@@ -2,19 +2,25 @@ package commands
 
 import (
 	"log"
+	"math/rand"
+	"time"
+	"utils"
 
 	"github.com/bwmarrin/discordgo"
 )
 
 var randomInfo = discordgo.ApplicationCommand{
-	Name:        "käännös",
-	Description: "Käännös mint",
+	Name:        "random",
+	Description: "Random huuttis",
 }
 
 func randomCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
-	err := InteractionRespondMessage(s, i, "https://mxrr.dev/files/vanamehe/käännös.mp4")
+	rand.Seed(time.Now().UnixNano())
+	roll := rand.Intn(utils.VideoCount)
+
+	err := InteractionRespondMessage(s, i, utils.Videos[roll])
 
 	if err != nil {
-		log.Printf("Käännös issue: %v", err)
+		log.Printf("Random issue: %v", err)
 	}
 }

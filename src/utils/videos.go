@@ -2,7 +2,9 @@ package utils
 
 import "fmt"
 
-var Videos [5]string
+const VideoCount = 5
+
+var Videos [VideoCount]string
 
 const (
 	HUUTTIS    = iota
