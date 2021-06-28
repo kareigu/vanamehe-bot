@@ -66,7 +66,7 @@ func init() {
 		}
 
 		if m.Author.ID == utils.PRIIDIK_ID && m.Content == "(mis see on)" {
-			utils.PlayVoiceLine(s)
+			utils.PlayVoiceLine(s, m)
 		}
 	})
 }
