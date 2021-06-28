@@ -82,6 +82,11 @@ func main() {
 		log.Fatal("Couldn't start bot client")
 	}
 
+	err = client.UpdateListeningStatus("Priidik")
+	if err != nil {
+		log.Fatal("Couldn't set presence")
+	}
+
 	for _, v := range commands.List {
 		_, err = client.ApplicationCommandCreate(client.State.User.ID, GuildID, v)
 		if err != nil {
