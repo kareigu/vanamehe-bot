@@ -12,6 +12,9 @@ var (
 		&kiinnostaaInfo,
 		&joinInfo,
 		&leaveInfo,
+		&homoInfo,
+		&randomInfo,
+		&vasikasInfo,
 	}
 
 	Handlers = map[string]func(
@@ -23,6 +26,9 @@ var (
 		kiinnostaaInfo.Name: kiinnostaaCmd,
 		joinInfo.Name:       joinCmd,
 		leaveInfo.Name:      leaveCmd,
+		homoInfo.Name:       homoCmd,
+		randomInfo.Name:     randomCmd,
+		vasikasInfo.Name:    vasikasCmd,
 	}
 )
 

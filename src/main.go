@@ -40,9 +40,22 @@ func init() {
 	client.AddHandler(func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 		if h, ok := commands.Handlers[i.Data.Name]; ok {
 			h(s, i)
+
+			var username, id string
+
+			if i.Member != nil {
+				username = i.Member.User.Username
+				id = i.Member.User.ID
+			} else if i.User != nil {
+				username = i.User.Username
+				id = i.User.ID
+			} else {
+				log.Printf("Error: no valid user info found")
+			}
+
 			log.Printf("%v#%v ran command %v",
-				i.Member.User.Username,
-				i.Member.User.ID,
+				username,
+				id,
 				i.Data.Name)
 		}
 	})
@@ -53,13 +66,13 @@ func init() {
 		}
 
 		if m.Author.ID == utils.PRIIDIK_ID && m.Content == "(mis see on)" {
-			utils.PlayVoiceLine(s)
+			utils.PlayVoiceLine(s, m)
 		}
 	})
 }
 
 func main() {
-	client.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsGuilds | discordgo.IntentsGuildVoiceStates 
+	client.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsGuilds | discordgo.IntentsGuildVoiceStates
 	client.AddHandler(func(s *discordgo.Session, r *discordgo.Ready) {
 		log.Println("Running...")
 	})
@@ -67,6 +80,11 @@ func main() {
 	err := client.Open()
 	if err != nil {
 		log.Fatal("Couldn't start bot client")
+	}
+
+	err = client.UpdateListeningStatus("Priidik")
+	if err != nil {
+		log.Fatal("Couldn't set presence")
 	}
 
 	for _, v := range commands.List {

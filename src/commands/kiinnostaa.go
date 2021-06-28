@@ -2,6 +2,7 @@ package commands
 
 import (
 	"log"
+	"utils"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -12,7 +13,7 @@ var kiinnostaaInfo = discordgo.ApplicationCommand{
 }
 
 func kiinnostaaCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
-	err := InteractionRespondMessage(s, i, "https://mxrr.dev/files/vanamehe/kiinnostaa.mp4")
+	err := InteractionRespondMessage(s, i, utils.Videos[utils.KIINNOSTAA])
 
 	if err != nil {
 		log.Printf("Kiinnostaa issue: %v", err)

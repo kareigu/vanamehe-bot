@@ -2,6 +2,7 @@ package commands
 
 import (
 	"log"
+	"utils"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -12,7 +13,7 @@ var huuttisInfo = discordgo.ApplicationCommand{
 }
 
 func huuttisCmd(s *discordgo.Session, i *discordgo.InteractionCreate) {
-	err := InteractionRespondMessage(s, i, "https://mxrr.dev/files/vanamehe/huuttis.mp4")
+	err := InteractionRespondMessage(s, i, utils.Videos[utils.HUUTTIS])
 
 	if err != nil {
 		log.Printf("Huuttis issue: %v", err)
