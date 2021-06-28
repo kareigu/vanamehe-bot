@@ -14,6 +14,7 @@ var (
 		&leaveInfo,
 		&homoInfo,
 		&randomInfo,
+		&vasikasInfo,
 	}
 
 	Handlers = map[string]func(
@@ -27,6 +28,7 @@ var (
 		leaveInfo.Name:      leaveCmd,
 		homoInfo.Name:       homoCmd,
 		randomInfo.Name:     randomCmd,
+		vasikasInfo.Name:    vasikasCmd,
 	}
 )
 
