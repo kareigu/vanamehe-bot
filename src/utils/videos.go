@@ -25,6 +25,6 @@ var videoNames = []string{
 func init() {
 	for i, name := range videoNames {
 		slice := Videos[0:i]
-		slice = append(slice, fmt.Sprintf("https://mxrr.dev/files/vanamehe/%s", name))
+		slice = append(slice, fmt.Sprintf("https://karei.dev/files/vanamehe/%s", name))
 	}
 }
