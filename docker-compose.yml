@@ -3,3 +3,6 @@ services:
     image: mxr/vanamehe-bot
     container_name: VanameheBot
     restart: unless-stopped
+    volumes:
+      - ./.env/:/go/src/vanamehe_bot/.env
+      - ./.assets:/go/src/vanamehe_bot/assets
